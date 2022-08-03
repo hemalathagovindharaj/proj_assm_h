@@ -11,6 +11,14 @@ view: users {
   dimension: age {
     type: number
     sql: ${TABLE}.age ;;
+    html:
+    {% if value > 20 %}
+      <font color="darkgreen">{{ rendered_value }}</font>
+    {% elsif value < 20 %}
+      <font color="goldenrod">{{ rendered_value }}</font>
+    {% else %}
+      <font color="darkred">{{ rendered_value }}</font>
+    {% endif %} ;;
   }
 
   dimension: city {
@@ -36,6 +44,12 @@ view: users {
       year
     ]
     sql: ${TABLE}.created_at ;;
+  }
+
+  dimension: date_formatted {
+    type: date
+    sql: ${created_date} ;;
+    html: {{ rendered_value | date: "%m/%d/%y" }} ;;
   }
 
   dimension: email {
