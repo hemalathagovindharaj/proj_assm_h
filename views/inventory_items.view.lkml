@@ -11,6 +11,7 @@ view: inventory_items {
   dimension: cost {
     type: number
     sql: ${TABLE}.cost ;;
+    value_format: "$#,###.00"
   }
 
   dimension_group: created {
@@ -49,6 +50,12 @@ view: inventory_items {
 
   measure: count {
     type: count
-    drill_fields: [id, products.id, products.item_name, order_items.count]
+    drill_fields: [id, products.id, products.item_name, order_items.count, Total_cost]
+  }
+
+  measure: Total_cost {
+    type: sum
+    sql: ${cost} ;;
+    value_format: "$#,###.00"
   }
 }
