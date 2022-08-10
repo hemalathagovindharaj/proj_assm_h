@@ -1,4 +1,4 @@
-view: derived_table {
+view: orders_and_inventory_items {
     derived_table: {
       explore_source: order_items {
         column: created_date { field: inventory_items.created_date }
@@ -13,6 +13,7 @@ view: derived_table {
     }
     dimension: id {
       type: number
+      primary_key: yes
     }
     dimension: order_id {
       type: number
