@@ -9,13 +9,11 @@ view: products {
   }
 
   dimension: brand {
-    hidden: yes
     type: string
     sql: ${TABLE}.brand ;;
   }
 
   dimension: category {
-    hidden: yes
     type: string
     sql: ${TABLE}.category ;;
   }
