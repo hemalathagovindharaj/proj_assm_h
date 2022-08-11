@@ -63,3 +63,5 @@ explore: product_facts {
 explore: products {}
 
 explore: users {}
+
+explore: sales_summary {}

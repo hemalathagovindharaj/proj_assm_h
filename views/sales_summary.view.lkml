@@ -1,21 +1,35 @@
-view: summary {
+view: sales_summary {
     derived_table: {
       explore_source: order_items {
-        column: id {}
-        column: count {}
-        column: Total_saleprice {}
+        column: created_date { field: inventory_items.created_date }
+        column: brand { field: products.brand }
+        column: first_name { field: users.first_name }
+        column: count { field: users.count }
+        column: city { field: users.city }
+        column: Total_cost { field: inventory_items.Total_cost }
+        filters: {
+          field: inventory_items.created_year
+          value: "2015"
+        }
+        filters: {
+          field: users.age
+          value: ">20"
+        }
       }
     }
-    dimension: id {
-      type: number
+    dimension: created_date {
+      type: date
     }
+    dimension: brand {}
+    dimension: first_name {}
     dimension: count {
       type: number
     }
-    dimension: Total_saleprice {
+    dimension: city {}
+    dimension: Total_cost {
+      value_format: "$#,###.00"
       type: number
     }
-
 
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
@@ -47,7 +61,7 @@ view: summary {
   # }
 }
 
-# view: summary {
+# view: sales_summary {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT
