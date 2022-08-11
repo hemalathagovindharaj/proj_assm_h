@@ -1,4 +1,9 @@
 view: users {
+  filter: state_filter{
+    type: string
+    suggest_dimension: state
+    default_value: "california"
+  }
   sql_table_name: public.users ;;
   drill_fields: [id]
 
@@ -89,6 +94,12 @@ view: users {
 
   measure: count {
     type: count
-    drill_fields: [id, first_name, last_name, orders.count]
+    drill_fields: [id, first_name, last_name, orders.count, customers_count_by_state ]
+  }
+
+  measure: customers_count_by_state {
+    type: count
+    filters: [state: "California, Nevada, Washington, Oregon"]
+    drill_fields: [id, first_name, last_name, orders.count, customers_count_by_state ]
   }
 }
