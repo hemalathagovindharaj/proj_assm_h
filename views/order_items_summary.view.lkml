@@ -1,22 +1,21 @@
-view: products_summary {
+view: order_items_summary {
     derived_table: {
       explore_source: order_items {
-        column: brand { field: products.brand }
-        column: category { field: products.category }
-        column: department { field: products.department }
-        column: retail_price { field: products.retail_price }
-        column: count { field: products.count }
+        column: id {}
+        column: count {}
+        column: Total_saleprice {}
       }
     }
-    dimension: brand {}
-    dimension: category {}
-    dimension: department {}
-    dimension: retail_price {
+    dimension: id {
       type: number
     }
     dimension: count {
       type: number
     }
+    dimension: Total_saleprice {
+      type: number
+    }
+
 
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
@@ -48,7 +47,7 @@ view: products_summary {
   # }
 }
 
-# view: products_summary {
+# view: order_items_summary {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT
